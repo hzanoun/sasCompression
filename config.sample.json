@@ -1,0 +1,29 @@
+{
+    "api_base_url": "https://your-datahub-api-url",
+    "api_key": "your-api-key",
+    "db_params": {
+        "dbname": "your_database",
+        "user": "your_username",
+        "password": "your_password",
+        "host": "your_host",
+        "port": 5432
+    },
+    "advanced_settings": {
+        "rate_limiting": {
+            "base_delay": 1,
+            "max_delay": 60,
+            "factor": 2
+        },
+        "api_timeout": 300,
+        "verify_ssl": true,
+        "max_retries": 5
+    },
+    "logging": {
+        "log_file": "compression_script.log",
+        "log_level": "INFO",
+        "rotation": {
+            "max_bytes": 10485760,
+            "backup_count": 5
+        }
+    }
+}
