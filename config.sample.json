@@ -1,29 +1,39 @@
 {
-    "api_base_url": "https://your-datahub-api-url",
-    "api_key": "your-api-key",
-    "db_params": {
-        "dbname": "your_database",
-        "user": "your_username",
-        "password": "your_password",
-        "host": "your_host",
-        "port": 5432
-    },
-    "advanced_settings": {
-        "rate_limiting": {
-            "base_delay": 1,
-            "max_delay": 60,
-            "factor": 2
-        },
-        "api_timeout": 300,
-        "verify_ssl": true,
-        "max_retries": 5
-    },
     "logging": {
-        "log_file": "compression_script.log",
-        "log_level": "INFO",
+        "level": "INFO",
+        "file": "compression_script.log",
         "rotation": {
             "max_bytes": 10485760,
             "backup_count": 5
+        }
+    },
+    "performance": {
+        "batch_size": 100,
+        "max_threads": 4,
+        "chunk_size": 8192,
+        "rate_limiting": {
+            "base_delay": 1,
+            "max_delay": 60,
+            "factor": 2,
+            "max_retries": 5
+        }
+    },
+    "api": {
+        "timeout": 300,
+        "verify_ssl": true,
+        "retry_codes": [429, 500, 502, 503, 504]
+    },
+    "database": {
+        "retry": {
+            "max_attempts": 3,
+            "delay_seconds": 1
+        }
+    },
+    "file_processing": {
+        "size_threshold": 1048576,
+        "verification": {
+            "checksum_algorithm": "sha256",
+            "verify_uploads": true
         }
     }
 }
