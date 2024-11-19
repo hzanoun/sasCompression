@@ -233,30 +233,30 @@ CHUNK_SIZE = 8192  # bytes
 
 ## Resource Management
 
-- **Automatic connection cleanup**
-- **Memory usage monitoring**
-- **Thread pool management**
-- **Configurable timeout settings**
+- Automatic connection cleanup
+- Memory usage monitoring
+- Thread pool management
+- Configurable timeout settings
 
 ## Security
 
 ### Best Practices
 
 #### Secure Credential Storage
-- **Environment variables**
-- **Encrypted configuration**
+- Environment variables
+- Encrypted configuration
 
 #### API Key Protection
-- **Automatic key rotation**
-- **Access logging**
+- Automatic key rotation
+- Access logging
 
 #### File Handling
-- **Integrity verification**
-- **Secure deletion**
+- Integrity verification
+- Secure deletion
 
 #### Access Control
-- **Role-based permissions**
-- **Audit logging**
+- Role-based permissions
+- Audit logging
 
 ## Troubleshooting
 
