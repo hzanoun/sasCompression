@@ -88,7 +88,7 @@ graph TD
 ```
 
 ## Project Structure
-
+```
 CopysasCompression/
 ├── .env.sample                # Environment variables template
 ├── config/ 
@@ -102,7 +102,7 @@ CopysasCompression/
 ├── tests/ 
 │   └── __init__.py            # Package initialization
 └── requirements.txt           # Python dependencies
-
+```
 
 
 ## Pre-requisites
