@@ -231,7 +231,7 @@ RATE_LIMIT_DELAY = 1  # second
 CHUNK_SIZE = 8192  # bytes
 ```
 
-# Resource Management
+## Resource Management
 
 - **Automatic connection cleanup**
 - **Memory usage monitoring**
