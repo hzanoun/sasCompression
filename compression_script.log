@@ -1,0 +1,89 @@
+2024-11-22 03:03:02,230 - root - INFO - Starting compression utility - Month: 11, Year: 2024, Dry Run: True
+2024-11-22 03:03:02,317 - root - INFO - Found 1 files to process
+2024-11-22 03:03:02,321 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:5000
+2024-11-22 03:03:04,347 - urllib3.connectionpool - DEBUG - http://localhost:5000 "GET /files/file123/download HTTP/11" 200 26
+2024-11-22 03:03:04,348 - root - ERROR - Error processing file file123: ProcessingStatistics.update_success() missing 1 required positional argument: 'original_size'
+2024-11-22 03:03:04,349 - root - INFO - Compression completed. Final statistics:
+2024-11-22 03:03:04,361 - root - INFO - {
+  "total_files_processed": 0,
+  "successful_compressions": 0,
+  "failed_compressions": 1,
+  "total_original_size_mb": 0.0,
+  "total_compressed_size_mb": 0.0,
+  "space_saved_mb": 0.0,
+  "compression_ratio": 0,
+  "processing_time_seconds": 2.118307,
+  "average_time_per_file": 0
+}
+2024-11-22 03:11:53,198 - root - INFO - Starting compression utility - Month: 11, Year: 2024, Dry Run: True
+2024-11-22 03:11:53,303 - root - INFO - Found 1 files to process
+2024-11-22 03:11:53,307 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:5000
+2024-11-22 03:11:55,343 - urllib3.connectionpool - DEBUG - http://localhost:5000 "GET /files/file123/download HTTP/11" 200 26
+2024-11-22 03:11:55,345 - root - INFO - Compression completed. Final statistics:
+2024-11-22 03:11:55,346 - root - INFO - {
+  "total_files_processed": 0,
+  "successful_compressions": 1,
+  "failed_compressions": 0,
+  "total_original_size_mb": 2.47955322265625e-05,
+  "total_compressed_size_mb": 4.1961669921875e-05,
+  "space_saved_mb": -1.71661376953125e-05,
+  "compression_ratio": 169.23076923076923,
+  "processing_time_seconds": 2.145635,
+  "average_time_per_file": 0
+}
+2024-11-22 03:20:30,005 - root - INFO - Starting compression utility - Month: 11, Year: 2024, Dry Run: True
+2024-11-22 03:20:30,127 - root - INFO - Found 1 files to process
+2024-11-22 03:20:30,133 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:5000
+2024-11-22 03:20:32,164 - urllib3.connectionpool - DEBUG - http://localhost:5000 "GET /files/file123/download HTTP/11" 200 26
+2024-11-22 03:20:32,166 - root - INFO - Compression completed. Final statistics:
+2024-11-22 03:20:32,166 - root - INFO - {
+  "total_files_processed": 1,
+  "successful_compressions": 1,
+  "failed_compressions": 0,
+  "total_original_size_mb": 2.47955322265625e-05,
+  "total_compressed_size_mb": 4.1961669921875e-05,
+  "space_saved_mb": -1.71661376953125e-05,
+  "compression_ratio": 169.23076923076923,
+  "processing_time_seconds": 2.16007,
+  "average_time_per_file": 2.16007
+}
+2024-11-22 03:24:55,738 - root - INFO - Starting compression utility - Month: 11, Year: 2024, Dry Run: True
+2024-11-22 03:24:55,889 - root - INFO - Found 3 files to process
+2024-11-22 03:24:55,894 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:5000
+2024-11-22 03:24:55,896 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (2): localhost:5000
+2024-11-22 03:24:55,897 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (3): localhost:5000
+2024-11-22 03:24:57,919 - urllib3.connectionpool - DEBUG - http://localhost:5000 "GET /files/file128/download HTTP/11" 200 26
+2024-11-22 03:24:57,919 - urllib3.connectionpool - DEBUG - http://localhost:5000 "GET /files/file124/download HTTP/11" 200 26
+2024-11-22 03:24:57,934 - urllib3.connectionpool - DEBUG - http://localhost:5000 "GET /files/file123/download HTTP/11" 200 26
+2024-11-22 03:24:57,935 - root - INFO - Compression completed. Final statistics:
+2024-11-22 03:24:57,936 - root - INFO - {
+  "total_files_processed": 3,
+  "successful_compressions": 3,
+  "failed_compressions": 0,
+  "total_original_size_mb": 7.43865966796875e-05,
+  "total_compressed_size_mb": 0.000125885009765625,
+  "space_saved_mb": -5.14984130859375e-05,
+  "compression_ratio": 169.23076923076923,
+  "processing_time_seconds": 2.196105,
+  "average_time_per_file": 0.7320350000000001
+}
+2024-11-22 03:40:21,673 - root - INFO - Starting compression utility - Month: 11, Year: 2024, Dry Run: True
+2024-11-22 03:40:21,798 - root - INFO - Found 3 files to process
+2024-11-22 03:40:21,805 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:5000
+2024-11-22 03:40:21,806 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (2): localhost:5000
+2024-11-22 03:40:21,807 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (3): localhost:5000
+2024-11-22 03:40:23,839 - urllib3.connectionpool - DEBUG - http://localhost:5000 "GET /files/file128/download HTTP/11" 200 26
+2024-11-22 03:40:23,840 - urllib3.connectionpool - DEBUG - http://localhost:5000 "GET /files/file123/download HTTP/11" 200 26
+2024-11-22 03:40:23,842 - urllib3.connectionpool - DEBUG - http://localhost:5000 "GET /files/file124/download HTTP/11" 200 26
+2024-11-22 03:40:23,844 - root - INFO - Compression completed. Final statistics:
+2024-11-22 03:40:23,844 - root - INFO - {
+  "total_files_processed": 3,
+  "successful_compressions": 3,
+  "failed_compressions": 0,
+  "total_original_size_mb": 7.43865966796875e-05,
+  "total_compressed_size_mb": 0.000125885009765625,
+  "space_saved_mb": -5.14984130859375e-05,
+  "compression_ratio": 169.23076923076923,
+  "processing_time_seconds": 2.170339,
+  "average_time_per_file": 0.7234463333333333
+}

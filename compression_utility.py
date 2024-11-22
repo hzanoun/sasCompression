@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
+# Import our custom logging configuration
+from src.utils.logging_config import setup_logging
+
 import os
 import psycopg2
 import gzip
 import io
 import logging
 import argparse
+import time
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 import json
 import hashlib
 from contextlib import contextmanager
-from typing import Optional, Dict, Any, Generator, Iterator
+from typing import Optional, Dict, Any, Generator, Iterator, List
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -20,10 +24,6 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
-
-# Import our custom logging configuration
-from utils.logging_config import setup_logging
-
 
 class DatabaseConnectionManager:
     """Manages database connections with context manager and retry logic."""
@@ -128,12 +128,14 @@ class FileProcessor:
             # Calculate original file hash while downloading
             hasher = hashlib.sha256()
             compressed_data = io.BytesIO()
+            original_size = 0  # Initialize the original size
 
             # Stream download and compress
             with gzip.GzipFile(fileobj=compressed_data, mode='wb') as gz:
                 for chunk in self.api_client.download_file(file_metadata["file_id"]):
                     hasher.update(chunk)
                     gz.write(chunk)
+                    original_size += len(chunk)  # Accumulate the size of each chunk
 
             original_hash = hasher.hexdigest()
             compressed_data_bytes = compressed_data.getvalue()
@@ -142,17 +144,19 @@ class FileProcessor:
                 # Upload compressed file
                 metadata = self._prepare_metadata(file_metadata, original_hash)
                 new_file = self.api_client.upload_file(
-                    iter([compressed_data_bytes]), metadata)
+                    iter([compressed_data_bytes]), metadata
+                )
 
                 # Verify upload
-                if not self.api_client.verify_file(new_file["file_id"],
-                                                   metadata["properties"]["compressed_hash"]):
+                if not self.api_client.verify_file(new_file["file_id"], metadata["properties"]["compressed_hash"]):
                     raise ValueError("Upload verification failed")
 
                 # Delete original file only after successful verification
                 self.api_client.delete_file(file_metadata["file_id"])
 
-            self.stats.update_success(len(compressed_data_bytes))
+            # Update statistics for a successful compression
+            self.stats.update_success(len(compressed_data_bytes), original_size)
+            self.stats.total_files += 1  # Increment total files processed
             return True
 
         except Exception as e:
@@ -193,7 +197,7 @@ class ProcessingStatistics:
             "total_compressed_size_mb": self.total_compressed_size / (1024 * 1024),
             "space_saved_mb": (self.total_original_size - self.total_compressed_size) / (1024 * 1024),
             "compression_ratio": (
-                        self.total_compressed_size / self.total_original_size * 100) if self.total_original_size > 0 else 0,
+                    self.total_compressed_size / self.total_original_size * 100) if self.total_original_size > 0 else 0,
             "processing_time_seconds": duration,
             "average_time_per_file": duration / self.total_files if self.total_files > 0 else 0
         }
