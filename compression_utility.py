@@ -15,15 +15,15 @@ from tqdm import tqdm
 import json
 import hashlib
 from contextlib import contextmanager
-from typing import Optional, Dict, Any, Generator, Iterator, List
+from typing import Dict, Any, Generator, Iterator, List
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-from pathlib import Path
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
+
 
 class DatabaseConnectionManager:
     """Manages database connections with context manager and retry logic."""
@@ -112,6 +112,12 @@ class DataHubAPI:
             hasher.update(chunk)
         return hasher.hexdigest() == expected_hash
 
+    def delete_file(self, file_id: str) -> None:
+        """Delete a file from DataHub."""
+        url = f"{self.base_url}/files/{file_id}"
+        response = self.session.delete(url)
+        response.raise_for_status()
+
 
 class FileProcessor:
     """Handles file processing with improved error handling and streaming."""
@@ -121,6 +127,18 @@ class FileProcessor:
         self.batch_size = batch_size
         self.dry_run = dry_run
         self.stats = ProcessingStatistics()
+
+    def _prepare_metadata(self, file_metadata: Dict[str, Any], original_hash: str) -> Dict[str, Any]:
+        """Prepare metadata for the file."""
+        return {
+            "properties": {
+                "original_hash": original_hash,
+                "compressed_hash": None,
+                "document_id": file_metadata["document_id"],
+                "document_type": file_metadata["document_type_nm"],
+            },
+            "metadata": file_metadata
+        }
 
     def process_file(self, file_metadata: Dict[str, Any]) -> bool:
         """Process a single file with streaming and verification."""
